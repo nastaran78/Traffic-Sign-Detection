@@ -62,8 +62,6 @@ def main(args):
         print(total_loss / len(test_dataset))
 
 
-
-
 if __name__ == "__main__":
     # parse command line arguments
     parser = argparse.ArgumentParser(description="Train or test the model")
