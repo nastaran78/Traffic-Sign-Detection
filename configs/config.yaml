@@ -1,0 +1,59 @@
+# ------------------------------
+# General settings
+project_name: "traffic-sign-detector"
+output_dir: "outputs"
+device: "cuda"  # or "cpu"
+
+# ------------------------------
+# Dataset
+dataset:
+  name: "TrafficSigns"
+  root_dir: "/kaggle/input/cardetection/car"
+  train_dir: "/kaggle/input/cardetection/car/train"
+  valid_dir: "/kaggle/input/cardetection/car/valid"
+  test_dir: "/kaggle/input/cardetection/car/test"
+  origin: "https://universe.roboflow.com/selfdriving-car-qtywx/self-driving-cars-lfjou"
+  train_split: "train"
+  val_split: "valid"
+  image_size: 416
+  classes:
+  - Green Light
+  - Red Light
+  - Speed Limit 10
+  - Speed Limit 100
+  - Speed Limit 110
+  - Speed Limit 120
+  - Speed Limit 20
+  - Speed Limit 30
+  - Speed Limit 40
+  - Speed Limit 50
+  - Speed Limit 60
+  - Speed Limit 70
+  - Speed Limit 80
+  - Speed Limit 90
+  - Stop
+
+# ------------------------------
+# Model
+model:
+  fasterrcnn_resnet50_fpn:
+    pretrained: true
+    freeze_backbone: true
+
+# ------------------------------
+# Training
+training:
+  fasterrcnn_resnet50_fpn:
+    epochs: 20
+    batch_size: 4
+    learning_rate: 0.005
+    weight_decay: 0.0005
+    momentum: 0.9
+    lr_scheduler_step: 10
+    lr_scheduler_gamma: 0.1
+    save_every: 5  # save every n epochs
+
+# ------------------------------
+# Evaluation
+evaluation:
+  score_threshold: 0.5
